@@ -5,7 +5,7 @@ interface IRequest extends Request {
   user?: any;  
 }
 
-const authMiddleware = (req: IRequest, res: Response, next: NextFunction) => {
+const authMiddleware = (req: IRequest, res: Response, next: NextFunction) => { 
   const token = req.header('Authorization')?.replace('Bearer ', '');
   
   if (!token) {
