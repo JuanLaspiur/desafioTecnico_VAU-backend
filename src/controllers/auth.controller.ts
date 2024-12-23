@@ -19,3 +19,15 @@ export const login = async (req: Request, res: Response) => {
     res.status(400).json({ message: err instanceof Error && err.message });
   }
 };
+
+
+export const signOut = async (req: Request, res: Response) => {
+  const userId = req.user.id; 
+  try {
+    await authService.signOut(userId);
+
+    res.status(200).json({ message: 'Successfully logged out' });
+  } catch (err) {
+    res.status(500).json({ message: 'Error signing out', error:  err instanceof Error && err.message });
+  }
+};

@@ -1,6 +1,7 @@
 import User from '../models/User';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { redisClient } from '../config/redisConfig.ts';
 
 
 export const registerUser = async (userData: any) => {
@@ -31,8 +32,21 @@ export const registerUser = async (userData: any) => {
   
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
   
+      await redisClient.set(user._id.toString(), token, { EX: 3600 });
+  
       return { user, token };
     } catch (err) {
-      throw new Error('Error logging in: ' +  (err instanceof Error && err.message));
+      throw new Error('Error logging in: ' + (err instanceof Error && err.message));
     }
   };
+
+  
+  export const signOut = async (userId: string) => {
+    try {
+      await redisClient.del(userId);
+      return { message: 'Successfully logged out' };
+    } catch (err) {
+      throw new Error('Error signing out: ' + (err instanceof Error && err.message));
+    }
+  };
+  
