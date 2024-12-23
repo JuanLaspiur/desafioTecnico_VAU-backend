@@ -28,6 +28,15 @@ export const updateUser = async (userId: string, userData: any) => {
   }
 };
 
+export const getAllUsers = async () => {
+  try {
+    const users = await User.find(); 
+    return users;
+  } catch (err) {
+    throw new Error('Error getting users');
+  }
+};
+
 export const deleteUser = async (userId: string) => {
   try {
     const deletedUser = await User.findByIdAndDelete(userId);

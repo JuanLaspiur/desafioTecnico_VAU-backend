@@ -32,6 +32,15 @@ export const updateUserByid = async(req:Request, res: Response) =>{
       }
 } 
 
+export const getAllUsers = async (_req: Request, res: Response) => {
+  try {
+    const users = await userService.getAllUsers();
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(400).json({ message: err instanceof Error && err.message });
+  }
+};
+
 export const deleteUser = async (req: Request, res: Response) => {
   const userId = req.user.id;  
   try {
