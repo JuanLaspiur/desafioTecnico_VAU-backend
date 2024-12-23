@@ -10,7 +10,7 @@ This project is an API REST developed using Node.js (version 22.12.0) and TypeSc
 ### Endpoints
 
 #### 1. User Registration
-- **Endpoint**: `/register`
+- **Endpoint**: `/auth/register`
 - **Method**: `POST`
 - **Request Body**:
   ```json
@@ -23,7 +23,7 @@ This project is an API REST developed using Node.js (version 22.12.0) and TypeSc
 - **Description**: Registers a new user in the database.
 
 #### 2. User Login
-- **Endpoint**: `/login`
+- **Endpoint**: `/auth/login`
 - **Method**: `POST`
 - **Request Body**:
   ```json
