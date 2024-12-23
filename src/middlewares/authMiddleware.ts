@@ -1,11 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-interface IRequest extends Request {
-  user?: any;
-}
 
-const authMiddleware = (req: IRequest, res: Response, next: NextFunction): void => {
+const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   const token = req.header('Authorization')?.replace('Bearer ', '');
 
   if (!token) {

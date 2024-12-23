@@ -13,7 +13,7 @@ export const registerUser = async (userData: any) => {
       await user.save();
       return user;
     } catch (err) {
-      throw new Error('Error creating user: ' + err.message);
+      throw new Error('Error creating user: ' + (err instanceof Error && err.message));
     }
   };
   
@@ -33,6 +33,6 @@ export const registerUser = async (userData: any) => {
   
       return { user, token };
     } catch (err) {
-      throw new Error('Error logging in: ' + err.message);
+      throw new Error('Error logging in: ' +  (err instanceof Error && err.message));
     }
   };

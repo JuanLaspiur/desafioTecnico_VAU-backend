@@ -9,7 +9,7 @@ export const getUser = async (userId: string) => {
     }
     return user;
   } catch (err) {
-    throw new Error('Error retrieving user: ' + err.message);
+    throw new Error('Error retrieving user: ' + (err instanceof Error && err.message));
   }
 };
 
@@ -24,7 +24,7 @@ export const updateUser = async (userId: string, userData: any) => {
     }
     return updatedUser;
   } catch (err) {
-    throw new Error('Error updating user: ' + err.message);
+    throw new Error('Error updating user: ' + (err instanceof Error && err.message));
   }
 };
 
@@ -36,6 +36,6 @@ export const deleteUser = async (userId: string) => {
     }
     return deletedUser;
   } catch (err) {
-    throw new Error('Error deleting user: ' + err.message);
+    throw new Error('Error deleting user: ' + (err instanceof Error && err.message));
   }
 };
