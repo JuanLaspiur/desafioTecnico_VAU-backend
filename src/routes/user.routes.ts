@@ -9,7 +9,7 @@ router.get(`/id/:id`,authMiddleware, userController.getUserById);
 router.get(`/`, authMiddleware, userController.getAllUsers);
 router.put(`/id/:id`, authMiddleware, userController.updateUserByid);
 router.put(`/`, authMiddleware, userController.updateUser);
-router.delete(`/id/:id`,  authMiddleware, userController.deleteUserById)
+router.delete(`/id/:id`,  authMiddleware, userController.deleteUserById);
 router.delete(`/`, authMiddleware, userController.deleteUser);
 
 
