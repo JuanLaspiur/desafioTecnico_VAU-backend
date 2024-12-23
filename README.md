@@ -63,8 +63,7 @@ This project is an API REST developed using Node.js (version 22.12.0) and TypeSc
 
 1. **Clone the Repository**:
    ```bash
-   git clone <repository-url>
-   cd <repository-folder>
+   git clone https://github.com/JuanLaspiur/desafioTecnico_VAU-backend
    ```
 
 2. **Install Dependencies**:
@@ -97,18 +96,22 @@ This project is an API REST developed using Node.js (version 22.12.0) and TypeSc
 
 ```plaintext
 src/
+├── config/
+│   └── db.ts
 ├── controllers/
 │   └── auth.controller.ts
 │   └── user.controller.ts
 ├── models/
 │   └── User.ts
 ├── routes/
+│   └── auth.routes.ts
 │   └── index.ts
 │   └── user.routes.ts
 ├── middleware/
 │   └── authMiddleware.ts
-├── config/
-│   └── db.ts
+│   └── validateFields.ts
+├── utils/
+│   └── validation.ts
 ├── index.ts
 └── .env
 ```
@@ -150,11 +153,7 @@ Contributions are welcome! Please fork the repository and submit a pull request.
 
 ---
 
-## License
-This project is licensed under the [MIT License](LICENSE).
-
----
 
 ## Author
-Developed by [Your Name].
+Developed by Juan Laspiur.
 
