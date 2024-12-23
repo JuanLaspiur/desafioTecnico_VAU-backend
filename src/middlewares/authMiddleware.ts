@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import { isTokenInRedis } from '../utils/redisUtils'; 
 
-
-const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
+const authMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const token = req.header('Authorization')?.replace('Bearer ', '');
 
   if (!token) {
@@ -13,10 +13,16 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction): void =
   try {
     const decoded: any = jwt.verify(token, process.env.JWT_SECRET as string);
     req.user = { id: decoded.id };
+
+    const tokenExistsInRedis = await isTokenInRedis(decoded.id);
+    if (!tokenExistsInRedis) {
+       res.status(401).json({ message: 'Token is no longer valid or not found in Redis' });
+       return
+    }
+
     next();
   } catch (err) {
-    res.status(401).json({ message: 'Invalid or expired token' }); 
-    return; 
+    res.status(401).json({ message: 'Invalid or expired token' });
   }
 };
 
