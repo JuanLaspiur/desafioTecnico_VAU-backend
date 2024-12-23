@@ -1,5 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import chalk from 'chalk';
+
 
 import routes from './routes/index.ts';
 import connectDB from './config/db.ts';
@@ -18,5 +20,5 @@ app.get('/', (_req, _res)=> {
 });
 
 app.listen(PORT,()=>{
-  console.log(`Server running on port ${PORT}`);
+  console.log(chalk.green(`Server running on port ${PORT}`));
 })
